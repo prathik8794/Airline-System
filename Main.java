@@ -282,6 +282,7 @@ public class Main{
                 //If the password matches it will allow customer to book the ticket
                 System.out.println("1.Domestic");
                 System.out.println("2.International");
+                System.out.println("3.Cancel Booking");
                 int mode = s.nextInt();
                 if(mode == 1){
                     //No need of passport 
@@ -337,7 +338,7 @@ public class Main{
                         }
                     }
                 }
-                else{
+                else if(mode == 2){
                 System.out.println("Enter the passport No:");
                 String passport = s.next();
                 System.out.println("From: ");
@@ -390,6 +391,15 @@ public class Main{
                         Takes back to the main page and the ticket will be added to this profile........
                         */
                             }
+                }
+                else{
+                    System.out.println("Enter the ticket no:");
+                    String ticketNo = s.next();
+                    //if(ticket.valid){
+                    System.out.println("Ticket cancelled successfully");
+                    System.out.println("Money will be refunded within 24 hrs.....");
+                    //}
+                    //else System.out.println("Invalid ticket");
                 }
                 }
         }
