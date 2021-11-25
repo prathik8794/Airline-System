@@ -189,12 +189,57 @@ class Flight{
         }
     }
 }
+class db_International{
+    private ArrayList<Flight>db1 = new ArrayList<Flight>();
+    Flight f1 = new Flight("Chennai","Abu-dabhi","27/11/2021","28/11/2021","10:40","23:00",5,5,5,150000);//all will be in Indian price but allowed to pay in different countries currencies.....
+    Flight f2 = new Flight("LA","Delhi","27/11/2021","28/11/2021","17:00","19:20",5,5,5,35600);
+    Flight f3 = new Flight("Paris","London","28/11/2021","29/11/2021","9:40","11:00",5,5,5,91000);
+    Flight f4 = new Flight("Chicago","Banglore","27/11/2021","29/11/2021","23:40","2:00",5,5,5,455060);
+    Flight f5 = new Flight("Mumbai","Banglore","27/11/2021","27/11/2021","22:00","23:40",5,5,5,2360);
+    Flight f6 = new Flight("Kolkota","Banglore","27/11/2021","27/11/2021","8:00","10:00",5,5,5,4350);
+    Flight f7 = new Flight("Banglore","Chennai","27/11/2021","28/11/2021","3:40","5:00",5,5,5,3000);
+    //db is always maintained in increasing price of flight......
+    void init_db(){
+        db1.add(f1);
+       // F1.print_details();
+        db1.add(f2);
+        db1.add(f3);
+        db1.add(f4);
+        db1.add(f5);
+        db1.add(f6);
+        db1.add(f7);
+       // db.add(F8);
+       // db.add(F9);
+    }
+    void add_flight(Flight f){
+        db1.add(f);
+    }
+    void remove_flight(Flight f){
+        for(int i=0;i<db1.size();i++){
+            if(f.equals(db1.get(i)))db1.remove(i);
+        }
+        System.out.println("flight can't be removed because it do not exist!!");
+    }
+    void search_flight(String from,String to){
+        int j=0;
+        for(int i=0;i<db1.size();i++){
+            if(from.equals(db1.get(i).get_from()) && to.equals(db1.get(i).get_to()) ){
+                System.out.print(j+1+" ");
+                db1.get(i).print_details();
+                j++;
+            }
+            //else System.out.println("0");
+        }
+    }
+}
 public class Main{
     public static void main(String []args){
         Scanner s = new Scanner(System.in);
         dataBase db = new dataBase();
         db_Domsetic d1 = new db_Domsetic();
+        db_International d2 = new db_International();
         d1.init_db();
+        d2.init_db();
         db.init_account();
         Random random = new Random();   
         //d1.search_flight("Chennai","Banglore");
@@ -265,9 +310,9 @@ public class Main{
                     else{
                         //Need to provide all passenger names and their personal details....
                         System.out.println("No of Co-passenger: ");
-                        int noco = s.next();
+                        int noco = s.nextInt();
                         String [] pp = new String[noco];
-                        for(int i=0;i<n;i++){
+                        for(int i=0;i<noco;i++){
                             System.out.println("Name:");
                             pp[i] = s.next();
                         }
@@ -278,6 +323,35 @@ public class Main{
                 String from = s.next();
                 System.out.println("To: ");
                 String to = s.next();
+                d2.search_flight(from,to);
+                    System.out.println("1.Choose a flight");
+                    //System.out.println("2.Logout");
+                    int next_mode = s.nextInt();
+                    System.out.println("1.Buisness   2.Economic");
+                    int be = s.nextInt();
+                    System.out.println("Any Co-passenger: ");//need to press Y if yes N for no...
+                    char c = s.next().charAt(0);
+                    if(c=='N'){
+                        System.out.println("Name: "+UserName);
+                        System.out.println("TicketNumber:"+from.substring(0,2)+":"+to.substring(0,3)+""+random.nextInt(10));
+                        if(be==1)System.out.println("Buisness");
+                        else System.out.println("Economic");
+                        System.out.println("Price:");
+                        int price = s.nextInt();
+                        System.out.println("Payment Modes:");
+                        System.out.println("1.Debit Card");
+                        System.out.println("2.Credit Card");
+                        System.out.println("3.NET Banking");
+                        int p_m = s.nextInt();
+                        if(p_m == 1)System.out.println("Payed Using the Debit Card");
+                        else if(p_m==2)System.out.println("Payed Using the Credit Card");
+                        else System.out.println("Paid through Bank");
+                        System.out.println("Your ticket booking is successfully completed!!!");
+                        System.out.println("Take a print out!!!");
+                        /*
+                        Takes back to the main page and the ticket will be added to this profile........
+                        */
+                            }
                 }
                 }
         }
