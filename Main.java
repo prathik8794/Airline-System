@@ -103,7 +103,8 @@ class Flight{
     private char[] seats_economic = new char[5];
     private int no_buisness_seats; // for testing 5
     private char[] seats_buisness = new char[5];
-    Flight(String from,String to,String dateOfDeparture,String dateOfArrival,String timeOfArrival,String timeOfDeparture,int no_seats,int no_economic_seats,int no_buisness_seats){
+    private int base_price;
+    Flight(String from,String to,String dateOfDeparture,String dateOfArrival,String timeOfArrival,String timeOfDeparture,int no_seats,int no_economic_seats,int no_buisness_seats,int base_price){
         this.from = from;
         this.to = to;
         this.dateOfDeparture = dateOfDeparture;
@@ -115,7 +116,11 @@ class Flight{
         this.no_buisness_seats = no_buisness_seats;
         this.seats_economic = "_____".toCharArray();
         this.seats_buisness = "_____".toCharArray();
+        this.base_price = base_price;
     }
+    void change_in_base_price(){
+        this.base_price+=300;
+    }//Nearer to date of flight the price goes on increasing by 300Rs.
     void show_status_of_seats(){
         // * for filled and _ for empty
         System.out.println("Economic class:   ");
@@ -131,16 +136,68 @@ class Flight{
     void if_seat_booked_buisness(int seat_no){
         seats_buisness[seat_no] = '*';
     }
+    String get_from(){
+        return this.from;
+    }
+    String get_to(){
+        return this.to;
+    }
+    void print_details(){
+        System.out.println(from+" "+to+" "+base_price+"Rs "+dateOfDeparture+" "+dateOfArrival+" "+timeOfDeparture+" "+timeOfArrival);
+    }
 }
-public class db_Domsetic{
+ class db_Domsetic{
     private ArrayList<Flight>db = new ArrayList<Flight>();
-    Flight F1 = new Flight("Chennai","Banglore","27/11/2021","27/11/2021","10:40","12:00",5,5,5);
+    Flight F1 = new Flight("Chennai","Banglore","27/11/2021","27/11/2021","10:40","12:00",5,5,5,3000);
+    Flight F2 = new Flight("Chennai","Banglore","27/11/2021","27/11/2021","17:00","18:20",5,5,5,3600);
+    Flight F3 = new Flight("Ahmedabad","Banglore","27/11/2021","27/11/2021","9:40","11:00",5,5,5,4100);
+    Flight F4 = new Flight("Delhi","Banglore","27/11/2021","27/11/2021","23:40","2:00",5,5,5,5060);
+    Flight F5 = new Flight("Mumbai","Banglore","27/11/2021","27/11/2021","22:00","23:40",5,5,5,2360);
+    Flight F6 = new Flight("Kolkota","Banglore","27/11/2021","27/11/2021","8:00","10:00",5,5,5,4350);
+    Flight F7 = new Flight("Banglore","Chennai","27/11/2021","28/11/2021","3:40","5:00",5,5,5,3000);
+    //db is always maintained in increasing price of flight......
+    void init_db(){
+        db.add(F1);
+       // F1.print_details();
+        db.add(F2);
+        db.add(F3);
+        db.add(F4);
+        db.add(F5);
+        db.add(F6);
+        db.add(F7);
+       // db.add(F8);
+       // db.add(F9);
+    }
+    void add_flight(Flight f){
+        db.add(f);
+    }
+    void remove_flight(Flight f){
+        for(int i=0;i<db.size();i++){
+            if(f.equals(db.get(i)))db.remove(i);
+        }
+        System.out.println("flight can't be removed because it do not exist!!");
+    }
+    void search_flight(String from,String to){
+        int j=0;
+        for(int i=0;i<db.size();i++){
+            if(from.equals(db.get(i).get_from()) && to.equals(db.get(i).get_to()) ){
+                System.out.print(j+1+" ");
+                db.get(i).print_details();
+                j++;
+            }
+            //else System.out.println("0");
+        }
+    }
 }
 public class Main{
     public static void main(String []args){
         Scanner s = new Scanner(System.in);
         dataBase db = new dataBase();
+        db_Domsetic d1 = new db_Domsetic();
+        d1.init_db();
         db.init_account();
+        Random random = new Random();   
+        //d1.search_flight("Chennai","Banglore");
         System.out.println("Welcome to the AirLine");
         System.out.println("1. Login");//press 1 to login and 2 to create new Account
         System.out.println("2. New User");
@@ -175,6 +232,46 @@ public class Main{
                         }
                     }
                     String to = s.next();
+                    System.out.println(from+":"+to);
+                    d1.search_flight(from,to);
+                    System.out.println("1.Choose a flight");
+                    //System.out.println("2.Logout");
+                    int next_mode = s.nextInt();
+                    System.out.println("1.Buisness   2.Economic");
+                    int be = s.nextInt();
+                    System.out.println("Any Co-passenger: ");//need to press Y if yes N for no...
+                    char c = s.next().charAt(0);
+                    if(c=='N'){
+                        System.out.println("Name: "+UserName);
+                        System.out.println("TicketNumber:"+from.substring(0,3)+":"+to.substring(0,3)+""+random.nextInt(10));
+                        if(be==1)System.out.println("Buisness");
+                        else System.out.println("Economic");
+                        System.out.println("Price:");
+                        int price = s.nextInt();
+                        System.out.println("Payment Modes:");
+                        System.out.println("1.Debit Card");
+                        System.out.println("2.Credit Card");
+                        System.out.println("3.NET Banking");
+                        int p_m = s.nextInt();
+                        if(p_m == 1)System.out.println("Payed Using the Debit Card");
+                        else if(p_m==2)System.out.println("Payed Using the Credit Card");
+                        else System.out.println("Paid through Bank");
+                        System.out.println("Your ticket booking is successfully completed!!!");
+                        System.out.println("Take a print out!!!");
+                        /*
+                        Takes back to the main page and the ticket will be added to this profile........
+                        */
+                            }
+                    else{
+                        //Need to provide all passenger names and their personal details....
+                        System.out.println("No of Co-passenger: ");
+                        int noco = s.next();
+                        String [] pp = new String[noco];
+                        for(int i=0;i<n;i++){
+                            System.out.println("Name:");
+                            pp[i] = s.next();
+                        }
+                    }
                 }
                 else{
                 System.out.println("From: ");
