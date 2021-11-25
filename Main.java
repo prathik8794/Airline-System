@@ -348,6 +348,21 @@ public class Main{
                         else System.out.println("Paid through Bank");
                         System.out.println("Your ticket booking is successfully completed!!!");
                         System.out.println("Take a print out!!!");
+                        System.out.println("Need a help in currency exchange??");
+                        char p = s.next().charAt(0);
+                        if(p=='Y'){
+                            int money = s.nextInt();
+                            String present_currency = s.nextInt();
+                            String currency_needed = s.nextInt();
+                            //We will use some online API for conversions of one currencies to another currencies.......
+                            //For just example i have taken that IND is 0.5 times less than all curriencies.....
+                            int result;
+                            if(present_currency.equals("Rupees")){
+                                result = 0.5*money;
+                            }
+                            else result=2*money;
+                            System.out.println("Successfully Currencies changed have a greate day.....");
+                        }
                         /*
                         Takes back to the main page and the ticket will be added to this profile........
                         */
