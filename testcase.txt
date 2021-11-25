@@ -1,0 +1,67 @@
+Input:
+prathik_8794
+prathik8794
+
+Output:
+Welcome to the AirLine
+1. Login
+2. New User
+UserName: 
+prathik_8794
+Password: 
+prathik8794
+Invalid Account!!!
+Please Retry!!!
+
+
+
+Input:
+1
+surya87094
+sv_8942
+2
+Paris
+London
+1
+2
+N
+91000
+2
+
+Output:
+Welcome to the AirLine
+1. Login
+2. New User
+1
+UserName: 
+surya87094
+Password: 
+sv_8942
+1.Domestic
+2.International
+2
+From: 
+Paris
+To: 
+London
+1 Paris London 91000Rs 28/11/2021 29/11/2021 11:00 9:40
+1.Choose a flight
+1
+1.Buisness   2.Economic
+2
+Any Co-passenger: 
+N
+Name: surya87094
+TicketNumber:Pa:Lon1
+Economic
+Price:
+91000
+Payment Modes:
+1.Debit Card
+2.Credit Card
+3.NET Banking
+2
+Payed Using the Credit Card
+Your ticket booking is successfully completed!!!
+Take a print out!!!
+
