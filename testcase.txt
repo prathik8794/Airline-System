@@ -20,6 +20,7 @@ Input:
 surya87094
 sv_8942
 2
+IND45647145
 Paris
 London
 1
@@ -40,6 +41,8 @@ sv_8942
 1.Domestic
 2.International
 2
+Enter the passport No:
+IND45647145
 From: 
 Paris
 To: 

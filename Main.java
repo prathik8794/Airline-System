@@ -319,6 +319,8 @@ public class Main{
                     }
                 }
                 else{
+                System.out.println("Enter the passport No:");
+                String passport = s.next();
                 System.out.println("From: ");
                 String from = s.next();
                 System.out.println("To: ");
