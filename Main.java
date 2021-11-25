@@ -1,5 +1,6 @@
 import java.util.*;
 
+
 class account{
     private String name;
     private int age;
@@ -232,6 +233,24 @@ class db_International{
         }
     }
 }
+class Admin{
+    //Creating all the objects inside the admin class
+    private String name;
+    private String id;
+    private dataBase d = new dataBase();
+    private db_Domsetic d1 = new db_Domsetic();
+    private db_International d2 = new db_International();
+
+    //Admin can access everything and needs to find the bug and fix them.......
+}
+class Airport{
+    private String Airport_Name;
+    private String Airport_Code;
+    private db_Domsetic d1 = new db_Domsetic();
+    private db_International d2 = new db_International();
+    private int no_gates;
+    //It is cotrolled by many admins and maintaince takes place.......
+}
 public class Main{
     public static void main(String []args){
         Scanner s = new Scanner(System.in);
@@ -354,13 +373,15 @@ public class Main{
                         char p = s.next().charAt(0);
                         if(p=='Y'){
                             int money = s.nextInt();
-                            String present_currency = s.nextInt();
-                            String currency_needed = s.nextInt();
+                            System.out.println("Present currency:");
+                            String present_currency = s.next();
+                            System.out.println("currency_needed:");
+                            String currency_needed = s.next();
                             //We will use some online API for conversions of one currencies to another currencies.......
                             //For just example i have taken that IND is 0.5 times less than all curriencies.....
                             int result;
                             if(present_currency.equals("Rupees")){
-                                result = 0.5*money;
+                                result = (int)(0.5*money);
                             }
                             else result=2*money;
                             System.out.println("Successfully Currencies changed have a greate day.....");
